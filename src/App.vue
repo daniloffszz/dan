@@ -1,14 +1,15 @@
 <script setup>
 import { RouterView } from 'vue-router'
 import Sidebar from './components/Sidebar.vue'
-import AddFriend from './components/AddFriend.vue'
+
 </script>
 
 <template>
     <div class="wrap">
-        <AddFriend />
+        
         <Sidebar />
         <RouterView />
+        
     </div>
 </template>
 
@@ -22,5 +23,6 @@ import AddFriend from './components/AddFriend.vue'
 .wrap {
     display: flex;
 }
+
 </style>
 

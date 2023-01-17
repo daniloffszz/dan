@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import General from '../views/General.vue'
 import Users from '../views/Users.vue'
+import Groups from '../views/Groups.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,6 +15,11 @@ const router = createRouter({
             path: '/users',
             name: 'Users',
             component: Users
+        },
+        {
+            path: '/groups',
+            name: 'Groups',
+            component: Groups
         }
     ]
 })

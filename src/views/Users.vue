@@ -1,21 +1,44 @@
-<script>
+<script setup>
+import AddFriend from '../components/AddFriend.vue'
+import { ref } from 'vue'
+
+const friends = ref([
+    {
+        id: 1,
+        name: 'John',
+        phone: '7999999999',
+        desc: 'Marks friend'
+    }
+])
+
+const showAlert = (name, phone, desc) => {
+    friends.value.push({
+        id: Math.floor(Math.random() * 100000),
+        name: name.value,
+        phone: phone.value,
+        desc: desc.value
+    })
+
+}
+
+
 
 </script>
 
 <template>
     
     <div class="container">
-        <div class="header-users">
+        <div class="header">
             <h1>Friends</h1>
-            <a href="#" class="button_green">Add Friend</a>
+            <AddFriend @ButtonClicked="showAlert" />
         </div>
-        <div class="list">
+        <div v-for="friend in friends" class="list">
             <div class="list-item">
                 <div class="list-item-name">
-                    David D.
+                    {{ friend.name }}
                 </div>
-                <div class="list-item-phone">+7 999 999-99-99</div>
-                <div class="list-item-desc">Mark's friend</div>
+                <div class="list-item-phone">{{ friend.phone }}</div>
+                <div class="list-item-desc">{{ friend.desc }}</div>
                 <div class="list-item-buttons">
                     <a href="#" class="button-edit">
                         <img src="../assets/icons/edit.svg" alt="">
@@ -31,22 +54,6 @@
 </template>
 
 <style scoped>
-.header-users {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 20px;
-}
-
-.button_green {
-    background-color: rgb(33, 165, 0);
-    ;
-    text-decoration: none;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-
 .list {
     margin-top: 20px;
 }

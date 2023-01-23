@@ -2,7 +2,7 @@
     <div class="container">
         <div class="header">
             <h1>Groups</h1>
-            <AddGroup />
+            <AddGroup @NewGroup="AddNewGroup" />
         </div>
         <div class="groups-list">
             <div v-for="g in groups" class="group">
@@ -10,7 +10,7 @@
                     <div class="group-name">
                         <h3>{{ g.group_name }}</h3>
                     </div>
-                    <div  class="group-participants">
+                    <div class="group-participants">
                         <div v-for="p in g.participants" class="participant">
                             {{ p.name }}
                         </div>
@@ -23,7 +23,7 @@
                     </div>
                     <div class="group-date">
                         <h3>Date</h3>
-                        <h4>{{ g.date.getDate() + '/' + g.date.getMonth()+ 1  + '/' + g.date.getFullYear()}}</h4>
+                        <h4>{{ g.date.getDate() + '/' + g.date.getMonth() + 1 + '/' + g.date.getFullYear() }}</h4>
                     </div>
                 </div>
             </div>
@@ -33,31 +33,34 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import AddGroup from '../components/AddGroup.vue'
+import friends from '../data/friends.json'
 
-    const groups = [
+const groups = ref(
+    [
         {
-            id: Math.random() * 100000,
+            id: Math.floor(Math.random() * 100000),
             group_name: 'Birthday',
             participants: [
                 {
-                    id: Math.random() * 100000,
+                    id: Math.floor(Math.random() * 100000),
                     name: 'John'
                 },
                 {
-                    id: Math.random() * 100000,
+                    id: Math.floor(Math.random() * 100000),
                     name: 'Maria'
                 },
                 {
-                    id: Math.random() * 100000,
+                    id: Math.floor(Math.random() * 100000),
                     name: 'Kevin'
                 },
                 {
-                    id: Math.random() * 100000,
+                    id: Math.floor(Math.random() * 100000),
                     name: 'Dan'
                 },
                 {
-                    id: Math.random() * 100000,
+                    id: Math.floor(Math.random() * 100000),
                     name: 'Alex'
                 },
             ],
@@ -65,6 +68,28 @@ import AddGroup from '../components/AddGroup.vue'
             date: new Date()
         },
     ]
+)
+
+const AddNewGroup = (name, price, usersForPraty) => {
+
+    let arr = usersForPraty.value
+
+    let users = []
+
+    for (let i = 0; i < arr.length; i++) {
+        users.push(friends.find(el => el.id == arr[i]))
+    }
+    groups.value.push({
+        id: Math.floor(Math.random() * 100000),
+        group_name: name.value,
+        participants: [
+            
+        ],
+        price: price.value,
+        date: new Date()
+    })
+    console.log(groups.value)
+}
 </script>
 
 <style scoped>

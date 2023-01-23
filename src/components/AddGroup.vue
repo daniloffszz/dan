@@ -18,7 +18,8 @@
                         </div>
                         <div v-if="parListVisibility" class="select-options">
                             <div v-for="f in friends" class="option">
-                                <label for="{{ f.id }}"><input type="checkbox" name="" id="{{ f.id }}">{{ f.name }}</label>
+                                <label :for="f.id"><input type="checkbox" name="" :value="f.id" :id="f.id"
+                                        v-model="usersForPraty">{{ f.name }}</label>
                             </div>
                         </div>
                     </div>
@@ -27,13 +28,12 @@
                     <h3>Price:</h3>
                     <input type="number" v-model="price" class="form-input form-input__grey" placeholder="Price...">
                 </div>
-                
 
-                <button type="submit" class="form-submit" @click="da">Submit</button>
+
+                <button type="submit" class="form-submit" @click="NewGroup">Submit</button>
             </div>
         </div>
     </Teleport>
-
 </template>
 
 <script setup>
@@ -42,12 +42,15 @@ import friends from '../data/friends.json'
 const Modalvisibility = ref(false)
 const parListVisibility = ref(false)
 
+const usersForPraty = ref([])
 const name = ref('')
 const price = ref('')
 
-const da = () => {
-    console.log(name, price, )
-}
+const emit = defineEmits(['NewGroup'])
+
+const NewGroup = () => {
+        emit('NewGroup', name, price, usersForPraty)
+    }
 
 </script>
 
@@ -74,6 +77,7 @@ h3 {
     display: flex;
     flex-direction: column;
 }
+
 .select-header {
     display: flex;
     justify-content: space-between;
@@ -83,6 +87,7 @@ h3 {
 .select-header img {
     transform: rotate(180deg);
 }
+
 .select-options {
     position: absolute;
     top: 30px;
@@ -93,4 +98,5 @@ h3 {
     padding: 10px 10px;
     border-radius: 5px;
 }
+
 </style>

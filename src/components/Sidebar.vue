@@ -9,6 +9,7 @@
             <router-link active-class="nav-link__active" class="nav-link" to="/">General</router-link>
             <router-link active-class="nav-link__active" class="nav-link" to="Users">Friends</router-link>
             <router-link active-class="nav-link__active" class="nav-link" to="Groups">Groups</router-link>
+            <router-link active-class="nav-link__active" class="nav-link" to="Sort">Sort</router-link>
         </div>
     </nav>
 

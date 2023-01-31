@@ -12,7 +12,7 @@
                     </div>
                     <div class="group-participants">
                         <div v-for="p in g.participants" class="participant">
-                            {{ p.name }}
+                            <p v-if="p.name">{{ p.name }}</p>
                         </div>
                     </div>
                 </div>
@@ -36,6 +36,8 @@
 import { ref } from 'vue'
 import AddGroup from '../components/AddGroup.vue'
 import friends from '../data/friends.json'
+
+      
 
 const groups = ref(
     [
@@ -76,19 +78,38 @@ const AddNewGroup = (name, price, usersForPraty) => {
 
     let users = []
 
+    let p = [
+        {
+            name: [],
+        }
+    ]
+
     for (let i = 0; i < arr.length; i++) {
         users.push(friends.find(el => el.id == arr[i]))
     }
+
     groups.value.push({
         id: Math.floor(Math.random() * 100000),
         group_name: name.value,
         participants: [
-            
+
         ],
         price: price.value,
         date: new Date()
     })
-    console.log(groups.value)
+    
+
+    // users.forEach(element => {
+    //     p.name.push({
+    //         id: element.id,
+    //         name: element.name
+    //     })
+
+    // })
+    // console.log(friends.id)
+
+    // console.log(groups)
+
 }
 </script>
 
@@ -134,4 +155,5 @@ h3 {
     text-align: right;
     justify-content: space-evenly;
 }
+
 </style>
